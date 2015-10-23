@@ -125,22 +125,27 @@ typedef struct {
 {
   StatusBarOverrideData *overrides = [UIStatusBarServer getStatusBarOverrideData];
   
-  // Set 9:41 time in current localization
+  // Set 10:10 time in current localization
   overrides->overrideTimeString = 1;
   strcpy(overrides->values.timeString, [self.timeString cStringUsingEncoding:NSUTF8StringEncoding]);
   
   // Enable 5 bars of mobile (iPhone only)
-  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-    overrides->booloverrideItemIsEnabled[3] = 1;
-    overrides->values.boolitemIsEnabled[3] = 1;
-    overrides->overrideGsmSignalStrengthBars = 1;
-    overrides->values.gsmSignalStrengthBars = 5;
-  }
+//  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+//    overrides->booloverrideItemIsEnabled[3] = 1;
+//    overrides->values.boolitemIsEnabled[3] = 1;
+//    overrides->overrideGsmSignalStrengthBars = 1;
+//    overrides->values.gsmSignalStrengthBars = 5;
+//  }
   
   // Remove carrier text for iPhone, set it to "iPad" for the iPad
   NSString *carrierText = self.carrierName;
-  if ([carrierText length] <= 0) {
-    carrierText = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) ? @"" : @"iPad";
+//  if ([carrierText length] <= 0) {
+//    carrierText = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) ? @"" : @"iPad";
+//  }
+  
+  // Default carrier to TenTen
+  if (carrierText.length == 0) {
+    carrierText = @"TenTen";
   }
   overrides->overrideServiceString = 1;
   strcpy(overrides->values.serviceString, [carrierText cStringUsingEncoding:NSUTF8StringEncoding]);

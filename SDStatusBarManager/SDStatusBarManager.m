@@ -139,8 +139,8 @@ static NSString * const SDStatusBarManagerTimeStringKey = @"time_string";
   formatter.timeStyle = NSDateFormatterShortStyle;
 
   NSDateComponents *components = [[NSCalendar currentCalendar] components: NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
-  components.hour = 9;
-  components.minute = 41;
+  components.hour = 10;
+  components.minute = 10;
 
   return [formatter stringFromDate:[[NSCalendar currentCalendar] dateFromComponents:components]];
 }
